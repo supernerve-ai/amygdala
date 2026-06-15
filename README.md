@@ -114,8 +114,14 @@ cp .env.example .env.local
 ### Run
 
 ```bash
-# Run directly
+# Run in demo mode (no Splunk needed — uses sample alerts)
+python -m amygdala.main --demo
+
+# Run live pipeline (requires Splunk + MCP server)
 python -m amygdala.main
+
+# Run with verbose logging
+python -m amygdala.main --demo --verbose
 
 # Or via Docker
 docker build -t amygdala .

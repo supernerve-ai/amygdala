@@ -50,3 +50,6 @@ logs/
 # Config overrides
 config/local.yaml
 config/*.local.yaml
+
+# Demo output
+output/

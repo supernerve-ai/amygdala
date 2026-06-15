@@ -1,0 +1,114 @@
+[
+  {
+    "id": "ALERT-2026-001",
+    "source": "splunk",
+    "_time": "2026-06-15T10:30:00Z",
+    "event_type": "brute_force",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "10.0.0.5",
+    "src_port": 45321,
+    "dst_port": 22,
+    "description": "Multiple failed SSH login attempts detected from single source",
+    "count": 150,
+    "timespan_seconds": 60,
+    "user": "admin",
+    "host": "prod-server-01",
+    "severity_hint": "high",
+    "raw_data": {
+      "action": "failure",
+      "app": "sshd",
+      "authentication_method": "password",
+      "reason": "invalid credentials"
+    }
+  },
+  {
+    "id": "ALERT-2026-002",
+    "source": "splunk",
+    "_time": "2026-06-15T10:32:15Z",
+    "event_type": "lateral_movement",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "10.0.0.12",
+    "src_port": 49812,
+    "dst_port": 445,
+    "description": "SMB connection from previously flagged source to internal file server",
+    "count": 3,
+    "timespan_seconds": 20,
+    "user": "svc_backup",
+    "host": "file-server-03",
+    "severity_hint": "critical",
+    "raw_data": {
+      "action": "allowed",
+      "app": "smbd",
+      "shares_accessed": ["\\\\file-server-03\\finance", "\\\\file-server-03\\hr"],
+      "bytes_transferred": 524288
+    }
+  },
+  {
+    "id": "ALERT-2026-003",
+    "source": "splunk",
+    "_time": "2026-06-15T10:28:00Z",
+    "event_type": "malware_download",
+    "src_ip": "10.0.1.45",
+    "dst_ip": "203.0.113.99",
+    "src_port": 52100,
+    "dst_port": 443,
+    "description": "Outbound connection to known malicious domain with executable download",
+    "count": 1,
+    "timespan_seconds": 5,
+    "user": "jsmith",
+    "host": "workstation-45",
+    "severity_hint": "critical",
+    "raw_data": {
+      "action": "allowed",
+      "app": "chrome.exe",
+      "url": "https://evil-payload.example.com/update.exe",
+      "file_hash": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4",
+      "file_size": 2048576
+    }
+  },
+  {
+    "id": "ALERT-2026-004",
+    "source": "splunk",
+    "_time": "2026-06-15T10:35:00Z",
+    "event_type": "privilege_escalation",
+    "src_ip": "10.0.0.5",
+    "dst_ip": "10.0.0.5",
+    "src_port": 0,
+    "dst_port": 0,
+    "description": "Unexpected sudo to root by service account after brute force success",
+    "count": 1,
+    "timespan_seconds": 2,
+    "user": "admin",
+    "host": "prod-server-01",
+    "severity_hint": "critical",
+    "raw_data": {
+      "action": "success",
+      "app": "sudo",
+      "command": "/bin/bash",
+      "original_user": "admin",
+      "target_user": "root"
+    }
+  },
+  {
+    "id": "ALERT-2026-005",
+    "source": "splunk",
+    "_time": "2026-06-15T10:20:00Z",
+    "event_type": "port_scan",
+    "src_ip": "192.168.1.100",
+    "dst_ip": "10.0.0.0/24",
+    "src_port": 0,
+    "dst_port": 0,
+    "description": "Horizontal port scan across internal subnet from single source",
+    "count": 1024,
+    "timespan_seconds": 30,
+    "user": "unknown",
+    "host": "unknown",
+    "severity_hint": "medium",
+    "raw_data": {
+      "action": "blocked",
+      "ports_scanned": [22, 80, 443, 445, 3389, 8080, 8443],
+      "hosts_reached": 254,
+      "technique": "SYN scan"
+    }
+  }
+]
