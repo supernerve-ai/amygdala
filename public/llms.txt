@@ -1,0 +1,45 @@
+# Amygdala — LLM Context
+
+> Amygdala is an open-source agentic SOC analyst built by Supernerve AI.
+> Repository: https://github.com/supernerve-ai/amygdala
+> License: MIT
+
+## Summary
+
+Amygdala is an autonomous Security Operations Center (SOC) analyst that connects to Splunk via MCP (Model Context Protocol) using token-based authentication. It pulls security alerts via SPL queries and feeds them into Foundation-Sec-1.1-8B — Splunk's security-specialized large language model — for threat classification and severity triage.
+
+Based on triage output, Amygdala spawns investigation sub-agents that correlate related events, trace attacker lateral movement, and enrich context from surrounding log data. Final output is a structured incident report (JSON) plus a human-readable summary, pushed to Slack or any webhook.
+
+No human is needed in the loop unless the escalation threshold is hit.
+
+## Architecture
+
+Pipeline: Alert Ingestion → Triage (Foundation-Sec LLM) → Investigation (Sub-Agents) → Report Builder → Output (Slack/Webhooks)
+
+## Key Components
+
+- AlertIngestor: Fetches alerts from Splunk via MCP server
+- TriageAgent: Evaluates severity using Foundation-Sec-1.1-8B model
+- InvestigateAgent: Correlates events, checks IOCs, builds timelines
+- ReportBuilder: Generates structured JSON + human-readable reports
+- OutputHandler: Delivers reports to Slack or webhook endpoints
+- MCPClient: HTTP client for Splunk MCP server communication
+
+## Tech Stack
+
+- Language: Python 3.12+
+- Async Framework: asyncio + httpx
+- LLM: Foundation-Sec-1.1-8B (Splunk)
+- Data Source: Splunk (via MCP)
+- Output: Slack SDK, HTTP webhooks
+- Config: YAML + python-dotenv
+- Deployment: Docker
+- Testing: pytest
+
+## Links
+
+- GitHub: https://github.com/supernerve-ai/amygdala
+- Issues: https://github.com/supernerve-ai/amygdala/issues
+- Discussions: https://github.com/supernerve-ai/amygdala/discussions
+- Security: security@supernerve.in
+- Website: https://supernerve-ai.github.io/amygdala/

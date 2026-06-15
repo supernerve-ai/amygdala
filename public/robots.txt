@@ -1,0 +1,36 @@
+# Amygdala — robots.txt
+# https://github.com/supernerve-ai/amygdala
+
+User-agent: *
+Allow: /
+
+# Sitemap (GitHub Pages)
+Sitemap: https://supernerve-ai.github.io/amygdala/sitemap.xml
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Allow: /
