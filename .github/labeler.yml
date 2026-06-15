@@ -1,0 +1,41 @@
+# Pull request labeler configuration
+# See: https://github.com/actions/labeler
+
+core:
+  - changed-files:
+      - any-glob-to-any-file: "amygdala/**"
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
+          - "*.md"
+          - "public/**"
+
+config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "config/**"
+          - "prompts/**"
+          - ".env.example"
+
+tests:
+  - changed-files:
+      - any-glob-to-any-file: "tests/**"
+
+docker:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "Dockerfile"
+          - "docker-compose*.yml"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "requirements.txt"
+          - "setup.py"
+          - "pyproject.toml"

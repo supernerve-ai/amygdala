@@ -1,6 +1,10 @@
 name: Greetings
 
-on: [pull_request_target, issues]
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
 
 jobs:
   greeting:
@@ -8,9 +12,26 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
-        pr-message: "Message that will be displayed on users' first pull request"
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Thanks for opening your first issue on Amygdala! We appreciate you taking the time to report this.
+
+            A maintainer will review it soon. In the meantime, please make sure you've included:
+            - Steps to reproduce (if it's a bug)
+            - Expected vs actual behavior
+            - Your environment details (Python version, OS, Docker version)
+
+            For security vulnerabilities, please see [SECURITY.md](https://github.com/supernerve-ai/amygdala/blob/main/SECURITY.md) instead.
+          pr-message: |
+            👋 Thanks for your first pull request to Amygdala! We're excited to review your contribution.
+
+            Before we review, please ensure:
+            - [ ] Tests pass (`pytest tests/ -v`)
+            - [ ] No hardcoded secrets in the diff
+            - [ ] PR title follows format: `[amygdala] Short description`
+
+            See [CONTRIBUTING.md](https://github.com/supernerve-ai/amygdala/blob/main/CONTRIBUTING.md) for full guidelines.
