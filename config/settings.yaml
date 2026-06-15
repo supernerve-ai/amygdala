@@ -1,0 +1,25 @@
+# Amygdala Configuration
+
+splunk:
+  host: ${SPLUNK_HOST}
+  token: ${SPLUNK_TOKEN}
+  index: ${SPLUNK_INDEX}
+  earliest_time: "-15m"
+  latest_time: "now"
+
+mcp:
+  server_url: ${MCP_SERVER_URL}
+  timeout: 30
+
+triage:
+  model_endpoint: ${MODEL_ENDPOINT}
+  model_name: ${MODEL_NAME}
+  severity_threshold: medium
+
+output:
+  slack_webhook: ${SLACK_WEBHOOK_URL}
+  slack_channel: ${SLACK_CHANNEL}
+
+logging:
+  level: ${LOG_LEVEL}
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

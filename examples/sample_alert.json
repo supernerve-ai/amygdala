@@ -1,0 +1,22 @@
+{
+  "id": "ALERT-2026-001",
+  "source": "splunk",
+  "timestamp": "2026-06-15T10:30:00Z",
+  "event_type": "brute_force",
+  "src_ip": "192.168.1.100",
+  "dst_ip": "10.0.0.5",
+  "src_port": 45321,
+  "dst_port": 22,
+  "description": "Multiple failed SSH login attempts detected from single source",
+  "count": 150,
+  "timespan_seconds": 60,
+  "user": "admin",
+  "host": "prod-server-01",
+  "severity_hint": "high",
+  "raw_data": {
+    "action": "failure",
+    "app": "sshd",
+    "authentication_method": "password",
+    "reason": "invalid credentials"
+  }
+}
