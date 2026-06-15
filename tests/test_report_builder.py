@@ -66,6 +66,19 @@ class TestReportBuilder:
 
     def test_report_status_defaults_to_open(self):
         report = self.builder.build(self.alert, self.triage, self.investigation)
+        # Investigation has "ESCALATE: IOC match" recommendation, so status is escalated
+        assert report["status"] == "escalated"
+
+    def test_report_status_open_when_no_escalation(self):
+        investigation = InvestigationResult(
+            correlated_events=[],
+            ioc_matches=[],
+            timeline=[],
+            risk_score=0.5,
+            recommendation="INVESTIGATE: needs more context",
+        )
+        triage = TriageResult(severity=6, threshold=5, category="test", summary="", recommended_action="")
+        report = self.builder.build(self.alert, triage, investigation)
         assert report["status"] == "open"
 
     def test_report_unassigned_by_default(self):
