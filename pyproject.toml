@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amygdala"
+version = "0.1.0"
+description = "Autonomous SOC analyst powered by Splunk MCP and Foundation-Sec LLM"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Supernerve AI", email = "security@supernerve.in"},
+]
+keywords = ["security", "splunk", "soc", "ai", "mcp", "triage"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.27.0",
+    "slack-sdk>=3.27.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "flake8>=7.0.0",
+    "pylint>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/supernerve-ai/amygdala"
+Repository = "https://github.com/supernerve-ai/amygdala"
+Issues = "https://github.com/supernerve-ai/amygdala/issues"
+Documentation = "https://supernerve-ai.github.io/amygdala/"
+
+[tool.setuptools.packages.find]
+include = ["amygdala*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

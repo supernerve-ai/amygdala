@@ -94,7 +94,10 @@ python -m venv .venv
 source .venv/bin/activate  # Linux/macOS
 .venv\Scripts\activate     # Windows
 
-# Install dependencies
+# Install as editable package (recommended for development)
+pip install -e .
+
+# Or just install dependencies
 pip install -r requirements.txt
 
 # Configure environment
@@ -138,6 +141,7 @@ amygdala/
 ├── tests/                  # Test suite
 ├── examples/               # Sample alerts and configs
 ├── Dockerfile              # Container build
+├── pyproject.toml          # Package metadata & build config
 ├── requirements.txt        # Python dependencies
 └── .env.example            # Environment template
 ```
